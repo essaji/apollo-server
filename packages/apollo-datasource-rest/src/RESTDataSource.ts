@@ -208,6 +208,7 @@ export abstract class RESTDataSource<TContext = any> extends DataSource {
     },
   ): Promise<TResult> {
     if (!(init.params instanceof URLSearchParams)) {
+      Object.keys(init.params).forEach(paramKey => !params[paramKey] && delete params[paramKey])
       init.params = new URLSearchParams(init.params);
     }
 
